@@ -18,5 +18,13 @@
     <ClInclude Include="source\Point2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\Color.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\Color.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

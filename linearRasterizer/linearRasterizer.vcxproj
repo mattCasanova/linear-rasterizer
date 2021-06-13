@@ -139,7 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="source\Color.h" />
     <ClInclude Include="source\Point2D.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\Color.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
