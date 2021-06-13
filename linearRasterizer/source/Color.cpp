@@ -9,7 +9,7 @@ Color::Color(
     const unsigned char r /*= 0*/, 
     const unsigned char g /*= 0*/,
     const unsigned char b /*= 0*/, 
-    const unsigned char a /*= UCHAR_MAX*/
+    const unsigned char a /*= std::numeric_limits<unsigned char>::max()*/
 )
 {
     set(r, g, b, a);
@@ -31,10 +31,20 @@ Color Color::operator*(const Color& rhs) const
     unsigned char colors[MAX_COLORS];
     for (int i = 0; i < MAX_COLORS; ++i)
     {
-        colors[i] = std::min(UCHAR_MAX, static_cast<int>(mColors[i]) * rhs.mColors[i]);
+        int newColor = std::min(UCHAR_MAX, static_cast<int>(mColors[i]) * rhs.mColors[i]);
+        colors[i] = static_cast<unsigned char>(newColor);
     }
 
     return Color(colors[R], colors[G], colors[B], colors[A]);
+}
+
+unsigned int Color::toInt() const
+{
+    unsigned int color = r() << 16;
+    color |= g() << 8;
+    color |= b();
+
+    return color;
 }
 
 unsigned char Color::r() const
@@ -79,7 +89,7 @@ void Color::set(
     const unsigned char r /*= 0*/, 
     const unsigned char g /*= 0*/, 
     const unsigned char b /*= 0*/, 
-    const unsigned char a /*= UCHAR_MAX*/
+    const unsigned char a /*= std::numeric_limits<unsigned char>::max()*/
 )
 {
     mColors[R] = r;

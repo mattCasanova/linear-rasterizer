@@ -10,11 +10,17 @@ enum ColorComponent { R = 0, G, B, A };
 class Color
 {
 public: 
-    explicit Color(const unsigned char r = 0, const unsigned char g = 0, const unsigned char b = 0, const unsigned char a = UCHAR_MAX);
+    explicit Color(
+        const unsigned char r = 0, 
+        const unsigned char g = 0, 
+        const unsigned char b = 0, 
+        const unsigned char a = std::numeric_limits<unsigned char>::max());
     Color(const Color& rhs);
     
     Color& operator=(const Color& rhs);
     Color operator*(const Color& rhs) const;
+
+    unsigned int toInt() const;
 
     unsigned char r() const;
     unsigned char g() const;
@@ -26,7 +32,11 @@ public:
     unsigned char& b();
     unsigned char& a();
 
-    void set(const unsigned char r = 0, const unsigned char g = 0, const unsigned char b = 0, const unsigned char a = 255);
+    void set(
+        const unsigned char r = 0, 
+        const unsigned char g = 0, 
+        const unsigned char b = 0, 
+        const unsigned char a = std::numeric_limits<unsigned char>::max());
 
 private:
     static const unsigned MAX_COLORS = 4;
